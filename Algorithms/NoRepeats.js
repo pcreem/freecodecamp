@@ -18,9 +18,7 @@ const getPermutations = arr => {
 
     for (let i = 0; i < n - 1; i++) {
       if (n % 2 === 0) {
-        console.log(heapArr)
         swapInPlace(heapArr, i, n - 1);
-        console.log(heapArr)
       } else {
         swapInPlace(heapArr, 0, n - 1);
       }
@@ -34,4 +32,18 @@ const getPermutations = arr => {
   return output;
 };
 
-getPermutations([1, 2])
+function permAlone(str) {
+  const arr = [...str]
+  const perms = getPermutations(arr)
+
+  let count = 0
+  for (const perm of perms) {
+    if (!/(.)\1+/.test(perm.join(''))) {
+      count++
+    }
+  }
+
+  return count
+}
+
+console.log(permAlone('aab'))
